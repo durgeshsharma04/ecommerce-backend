@@ -6,7 +6,8 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "pnpm -r run dev"
+    "dev": "pnpm -r run dev",
+    "setup:all": "pnpm --filter user-service run migrate && pnpm --filter user-service run generate && pnpm --filter product-service run migrate && pnpm --filter product-service run generate && pnpm --filter order-service run migrate && pnpm --filter order-service run generate && pnpm dev"
   },
   "keywords": [],
   "author": "",
