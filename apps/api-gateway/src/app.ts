@@ -1,25 +1,31 @@
 import express from "express";
+import dotenv from "dotenv";
+import path from "path";
 import { createProxyMiddleware } from "http-proxy-middleware";
 import AppError from "@utils/AppError";
 import { errorHandler } from "@utils/errorHandler";
+import { getRequiredEnv } from "@utils/env";
 import {authMiddleware} from "./middleware/auth.middleware";
 import { roleMiddleware } from "./middleware/role.middleware";
 
+const envFilename = process.env.NODE_ENV === "production" ? ".env" : ".env.local";
+const envPath = path.resolve(__dirname, "..", envFilename);
+dotenv.config({ path: envPath });
 
 const app = express();
 
 app.use("/users", createProxyMiddleware({
-  target: "http://localhost:3001",
+  target: getRequiredEnv("USER_SERVICE_URL"),
   changeOrigin: true
 }));
 
 app.use("/products", authMiddleware, roleMiddleware(["admin", "customer"]), createProxyMiddleware({
-  target: "http://localhost:3002",
+  target: getRequiredEnv("PRODUCT_SERVICE_URL"),
   changeOrigin: true
 }));
 
 app.use("/orders", authMiddleware, roleMiddleware(["admin", "customer"]), createProxyMiddleware({
-  target: "http://localhost:3003",
+  target: getRequiredEnv("ORDER_SERVICE_URL"),
   changeOrigin: true
 }));
 

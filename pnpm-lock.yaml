@@ -17,6 +17,9 @@ importers:
 
   apps/api-gateway:
     dependencies:
+      dotenv:
+        specifier: ^17.4.0
+        version: 17.4.0
       express:
         specifier: ^5.2.1
         version: 5.2.1
