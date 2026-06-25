@@ -7,6 +7,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "pnpm -r run dev",
+    "docker:up": "docker compose up -d",
+    "docker:down": "docker compose down",
     "setup:all": "pnpm --filter user-service run migrate && pnpm --filter user-service run generate && pnpm --filter product-service run migrate && pnpm --filter product-service run generate && pnpm --filter order-service run migrate && pnpm --filter order-service run generate && pnpm dev"
   },
   "keywords": [],
