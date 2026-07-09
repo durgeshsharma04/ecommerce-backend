@@ -33,6 +33,6 @@ export const login = async (data : {email:string, password:string}) => {
     if (!isPasswordValid) {
         throw new AppError("Invalid email or password", 400);
     }
-    const token = jwt.sign({ userId: user, role: user }, process.env.JWT_SECRET as string, { expiresIn: "1d" });
+    const token = jwt.sign({ userId: user.id, userEmail: user.email, role: user.role }, process.env.JWT_SECRET as string, { expiresIn: "1d" });
     return token;
 }
