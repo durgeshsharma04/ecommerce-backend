@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "../../../prisma/generated/prisma";
 import dotenv from "dotenv";
 dotenv.config();
 import AppError from "@utils/AppError";

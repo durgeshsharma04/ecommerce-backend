@@ -14,31 +14,30 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model Category {
-  id          String   @id @default(uuid())
+  id          String    @id @default(uuid())
   name        String
-  slug        String   @unique
+  slug        String    @unique
   description String?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  products    Product[]  // Relation with Product
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  products    Product[] // Relation with Product
 }
 
 model Product {
-  id          String   @id @default(uuid())
+  id          String        @id @default(uuid())
   name        String
-  slug        String   @unique
+  slug        String        @unique
   description String?
   price       Decimal
   status      ProductStatus @default(ACTIVE)
   categoryId  String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
 
   // Relation with Category
-  category    Category @relation(fields: [categoryId], references: [id])
-  images      ProductImage[] // relation with image
+  category Category       @relation(fields: [categoryId], references: [id])
+  images   ProductImage[] // relation with image
 }
 
 enum ProductStatus {
