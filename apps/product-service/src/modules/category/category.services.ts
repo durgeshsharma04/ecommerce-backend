@@ -1,7 +1,5 @@
-import { PrismaClient } from "../../../prisma/generated/prisma";
+import { prisma } from "../../db/prisma";
 import AppError from "@utils/AppError";
-
-const prisma = new PrismaClient();
 
 export interface Category {
     id: number;
