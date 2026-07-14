@@ -15,10 +15,10 @@
   "packageManager": "pnpm@10.33.0",
   "dependencies": {
     "@prisma/client": "^5.22.0",
-    "express": "^5.2.1"
+    "express": "catalog:"
   },
   "devDependencies": {
-    "@types/express": "^5.0.6",
+    "@types/express": "catalog:",
     "@types/node": "^25.5.0",
     "prisma": "^5.22.0",
     "ts-node-dev": "^2.0.0",

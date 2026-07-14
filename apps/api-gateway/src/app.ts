@@ -7,12 +7,15 @@ import { errorHandler } from "@utils/errorHandler";
 import { getRequiredEnv } from "@utils/env";
 import {authMiddleware} from "./middleware/auth.middleware";
 import { roleMiddleware } from "./middleware/role.middleware";
+import cors from "cors";
 
 const envFilename = process.env.NODE_ENV === "production" ? ".env" : ".env.local";
 const envPath = path.resolve(__dirname, "..", envFilename);
 dotenv.config({ path: envPath });
 
 const app = express();
+
+app.use(cors());
 
 app.use("/users", createProxyMiddleware({
   target: getRequiredEnv("USER_SERVICE_URL"),
